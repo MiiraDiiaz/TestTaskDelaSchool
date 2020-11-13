@@ -1,0 +1,55 @@
+﻿@model IEnumerable<TestTaskDelaSchool.Models.User>
+@{
+    ViewData["Title"] = "Список пользователей";
+}
+
+
+<a class="btn btn-sm btn-info" asp-action="Create" asp-controller="User">Добавить пользователя</a>
+
+<table class="table">
+
+    <tr><th>ИНН организации</th><th>Имя организации</th><th>Тип организации</th><th>Дата создания</th><th>Дата обновления</th></tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.INN</td>
+            <td>@user.Name</td>
+            <td>@Html.DisplayFor(x => user.TypeOfCompany)</td>
+            <td>@user.CreatedAt</td>
+            <td>@user.UpdatedAt</td>
+            <td>
+                @if (user.TypeOfCompany == TypeOfCompany.legalEntity)
+                {
+                    <a class="btn btn-sm btn-info transition" href="/User/DetailsFounder/@user.Id">Учредители</a><br/>
+                    <a class="btn btn-sm btn-info transition" href="/User/CreateFounder/@user.Id">Добавить учредителя</a>
+                }
+                else
+                {
+                    <span class="badge badge-warning">Вы можете добавить только одного учредителя!</span><br/>
+                    <a class="btn btn-sm btn-info transition" href="/User/DetailsFounder/@user.Id">Учредители</a>
+                }
+            <td>
+                <form asp-action="Delete" asp-route-id="@user.Id" method="post">                    
+                    <a class="btn btn-sm btn-primary transition" href="/User/EditUser/@user.Id">Изменить</a>
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Удалить
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+<div class=" container" id="Content">
+
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $('.transition').click(function (e) {
+            e.preventDefault(); 
+            $("#Content").load($(this).attr('href'));
+
+        });
+    </script>
+}

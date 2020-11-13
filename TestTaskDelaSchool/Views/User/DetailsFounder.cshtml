@@ -1,0 +1,15 @@
+﻿@model IEnumerable<TestTaskDelaSchool.Models.Founder>
+@{
+    Layout = null;
+}
+<table class="table">
+
+    <tr><th>ИНН Учредителя</th><th>Имя учредителя</th></tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.INN</td>
+            <td>@user.Name</td>
+        </tr>
+    }
+</table>

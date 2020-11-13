@@ -1,0 +1,35 @@
+﻿@model TestTaskDelaSchool.ViewModel.UserFounderVM
+
+<form asp-action="Create" asp-controller="User" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="INNCompany" class="control-label"></label>
+        <input type="text" asp-for="INNCompany" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NameCompane" class="control-label"></label>
+        <input type="text" asp-for="NameCompane" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TypeOfCompany" class="control-label"></label>
+        <select asp-for="TypeOfCompany" asp-items="Html.GetEnumSelectList<TypeOfCompany>()"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="INNFounder" class="control-label"></label>
+        <input type="text" asp-for="INNFounder" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NameFounder" class="control-label"></label>
+        <input type="text" asp-for="NameFounder" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Добавить" class="btn btn-outline-secondary" />
+    </div>
+
+</form>
